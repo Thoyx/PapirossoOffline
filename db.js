@@ -15,8 +15,8 @@ class Database {
             
             // Tabla persona
             const personas = [
-                { curp: 'RO MJ050 515HDFRS09', nombre: 'José', apellidos: 'Rodríguez Martínez', correo: 'jose@papirosso.com', rfc: null, telefono: '5512345678' },
-                { curp: 'ROJA980 315HDFRS08', nombre: 'Alexis', apellidos: 'Rosales Juárez', correo: 'alexis@papirosso.com', rfc: null, telefono: '5587654321' },
+                { curp: 'ROMJ050515HDFRS09', nombre: 'José', apellidos: 'Rodríguez Martínez', correo: 'jose@papirosso.com', rfc: null, telefono: '5512345678' },
+                { curp: 'ROJA980315HDFRS08', nombre: 'Alexis', apellidos: 'Rosales Juárez', correo: 'alexis@papirosso.com', rfc: null, telefono: '5587654321' },
                 { curp: 'TRAB010101HLINEA01', nombre: 'Venta', apellidos: 'En Línea', correo: 'online@papirosso.com', rfc: null, telefono: null },
                 { curp: 'CHOC000101HDFRRR00', nombre: 'Profesor', apellidos: 'Chocolate Admin', correo: 'prof@papirosso.com', rfc: null, telefono: null },
                 { curp: 'CHOC000101HDFRRR99', nombre: 'Visitante', apellidos: 'Demo', correo: 'demo@papirosso.com', rfc: null, telefono: null }
@@ -25,8 +25,8 @@ class Database {
 
             // Tabla trabajadores
             const trabajadores = [
-                { curp: 'RO MJ050 515HDFRS09', rol: 'Admin', sueldo: 15000, password: 'admin123' },
-                { curp: 'ROJA980 315HDFRS08', rol: 'Admin', sueldo: 15000, password: 'admin123' },
+                { curp: 'ROMJ050515HDFRS09', rol: 'Admin', sueldo: 15000, password: 'admin123' },
+                { curp: 'ROJA980315HDFRS08', rol: 'Admin', sueldo: 15000, password: 'admin123' },
                 { curp: 'CHOC000101HDFRRR00', rol: 'General', sueldo: 0, password: 'profesor123' },
                 { curp: 'CHOC000101HDFRRR99', rol: 'visitante', sueldo: 0, password: 'demo123' }
             ];
@@ -145,7 +145,7 @@ class Database {
                 rol: rolFinal,
                 tipo: 'trabajador',
                 persona: persona ? { nombre: persona.nombre, apellidos: persona.apellidos } : { nombre: 'Usuario', apellidos: 'Papirosso' },
-                redirect: '/panel.html'
+                redirect: 'panel.html'
             };
         }
 
@@ -159,7 +159,7 @@ class Database {
                 rol: 'cliente',
                 tipo: 'cliente',
                 persona: persona ? { nombre: persona.nombre, apellidos: persona.apellidos } : { nombre: 'Cliente', apellidos: 'Papirosso' },
-                redirect: '/cliente-publico.html'
+                redirect: 'cliente-publico.html'
             };
         }
 

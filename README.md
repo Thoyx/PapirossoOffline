@@ -31,16 +31,22 @@ Los datos son **locales a cada navegador/dispositivo**. Esto significa:
 
 ## 🔐 Usuarios de prueba (precargados)
 
-### Administradores
-- **CURP**: `ROMJ050515HDFRS09` | **Contraseña**: `admin123`
-- **CURP**: `ROJA980315HDFRS08` | **Contraseña**: `admin123`
+### 👔 Administradores (acceso completo)
+| CURP | Contraseña |
+|------|------------|
+| `ROMJ050515HDFRS09` | `admin123` |
+| `ROJA980315HDFRS08` | `admin123` |
 
-### Visitante (Solo lectura)
-- **CURP**: `CHOC000101HDFRRR00` | **Contraseña**: `profesor123`
-- **CURP**: `CHOC000101HDFRRR99` | **Contraseña**: `demo123`
+### 👁️ Visitante (solo lectura)
+| CURP | Contraseña |
+|------|------------|
+| `CHOC000101HDFRRR00` | `profesor123` |
+| `CHOC000101HDFRRR99` | `demo123` |
 
-### Cliente
-- **CURP**: `TRAB010101HLINEA01` | **Contraseña**: `cliente123`
+### 🛍️ Cliente (tienda pública)
+| CURP | Contraseña |
+|------|------------|
+| `TRAB010101HLINEA01` | `cliente123` |
 
 ---
 
@@ -143,7 +149,7 @@ location.reload();
 ## 🐛 Solución de problemas
 
 ### "No puedo iniciar sesión"
-- Asegúrate de usar las CURPs exactas (mayúsculas)
+- Asegúrate de usar las CURPs exactas (mayúsculas, sin espacios)
 - Verifica que `db.js` se cargue antes que `legacy-app.js` en los HTML
 
 ### "Los productos no aparecen"
