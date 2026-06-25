@@ -951,9 +951,8 @@ async function registrarVentaPublica() {
 // 10. EASTER EGG - SANS (MORTADELA)
 // ==========================================
 
-// 1. Declaramos la URL directa (Raw) del archivo de audio en tu repositorio de GitHub
-const urlMusicaSans = "https://raw.githubusercontent.com/Thoyx/PapirossoOffline/main/musicaeaster/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%2072%20Song%20That%20Might%20Play%20When%20You%20Fight%20Sans.mp3";
-const musicaSans = new Audio(urlMusicaSans);
+// 1. Declaramos el archivo de audio usando el path relativo de tu carpeta
+const musicaSans = new Audio('musicaeaster/toby fox - UNDERTALE Soundtrack - 72 Song That Might Play When You Fight Sans.mp3');
 musicaSans.loop = true;
 
 // 2. Escuchamos cuando el HTML termine de cargar los elementos de la página
@@ -1006,7 +1005,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
 
 // =======================================================
 // 6. LÓGICA DE PUNTO DE VENTA Y CARRITO (VERSION RESTAURADA)
