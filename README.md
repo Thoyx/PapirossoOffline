@@ -31,12 +31,6 @@ Los datos son **locales a cada navegador/dispositivo**. Esto significa:
 
 ## 🔐 Usuarios de prueba (precargados)
 
-### 👔 Administradores (acceso completo)
-| CURP | Contraseña |
-|------|------------|
-| `ROMJ050515HDFRS091` | `admin123` |
-| `ROJA980315HDFRS081` | `admin123` |
-
 ### 👁️ Visitante (solo lectura)
 | CURP | Contraseña |
 |------|------------|
