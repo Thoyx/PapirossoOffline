@@ -951,7 +951,7 @@ async function registrarVentaPublica() {
 // 10. EASTER EGG - SANS (MORTADELA)
 // ==========================================
 
-// 1. Declaramos el archivo de audio de Qumu de forma global en el script
+// 1. Declaramos el archivo de audio de forma global
 const musicaSans = new Audio('megalovania.mp3');
 musicaSans.loop = true;
 
@@ -967,23 +967,29 @@ document.addEventListener('DOMContentLoaded', () => {
         buscadorPublico.addEventListener('input', (e) => {
             const texto = e.target.value.toLowerCase().trim();
             
-            // Si el texto es exactamente "mortadela", activamos la sorpresa
+            // Si dice "mortadela", SOLO hacemos visible el botón del huesito 🦴
             if (texto === 'mortadela') {
                 if (easterEggBtn) easterEggBtn.classList.remove('hidden');
-                if (modalSans) modalSans.classList.remove('hidden');
-                
-                // Intentamos reproducir la música de Qumu
-                musicaSans.play().catch(error => {
-                    console.log("El navegador bloqueó el autoplay hasta que interactúes:", error);
-                });
             } else {
-                // SI EL TEXTO CAMBIA O SE BORRA: Desaparece el botón, el modal y se apaga la música
+                // Si borra la palabra, ocultamos el hueso, el modal y apagamos la música
                 if (easterEggBtn) easterEggBtn.classList.add('hidden');
                 if (modalSans) modalSans.classList.add('hidden');
                 
                 musicaSans.pause();
-                musicaSans.currentTime = 0; // Reinicia la canción al segundo cero
+                musicaSans.currentTime = 0;
             }
+        });
+    }
+
+    // NUEVO: La ventanita y la música SOLO se activan al hacer clic en el botón de hueso 🦴
+    if (easterEggBtn) {
+        easterEggBtn.addEventListener('click', () => {
+            if (modalSans) modalSans.classList.remove('hidden');
+            
+            // Reproducimos la música tras la interacción del clic
+            musicaSans.play().catch(error => {
+                console.log("El navegador bloqueó el audio:", error);
+            });
         });
     }
 
@@ -999,7 +1005,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
 // =======================================================
 // 6. LÓGICA DE PUNTO DE VENTA Y CARRITO (VERSION RESTAURADA)
 // =======================================================
