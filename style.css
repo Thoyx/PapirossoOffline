@@ -457,3 +457,57 @@ button { font: inherit; }
     }
 }
 
+/* ==========================================
+   ESTILOS PARA MODALES EMERGENTES (SANS / LOGIN)
+   ========================================== */
+
+/* Fondo oscuro que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(4px); /* Efecto difuminado moderno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Por encima de todo */
+}
+
+/* Tarjeta blanca flotante del mensaje */
+.modal-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.modal-body {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Forzar que .hidden oculte por completo */
+.hidden {
+    display: none !important;
+}
+
