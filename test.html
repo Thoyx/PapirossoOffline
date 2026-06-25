@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Papirosso Offline</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #0f172a; }
+        h2 { color: #2563eb; margin-top: 0; }
+        .success { color: #10b981; font-weight: bold; }
+        .error { color: #ef4444; font-weight: bold; }
+        .info { color: #64748b; }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover { background: #1d4ed8; }
+        button.danger { background: #ef4444; }
+        button.danger:hover { background: #dc2626; }
+        pre {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .test-result {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        .pass { background: #d1fae5; color: #065f46; }
+        .fail { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Panel de Pruebas - Papirosso Offline</h1>
+    
+    <div class="card">
+        <h2>1. Estado de la Base de Datos</h2>
+        <button onclick="verificarDB()">Verificar Base de Datos</button>
+        <button onclick="mostrarProductos()">Mostrar Productos</button>
+        <button onclick="mostrarUsuarios()">Mostrar Usuarios</button>
+        <button onclick="mostrarVentas()">Mostrar Ventas</button>
+        <div id="db-status"></div>
+    </div>
+
+    <div class="card">
+        <h2>2. Pruebas de Funcionalidad</h2>
+        <button onclick="testLogin()">Probar Login</button>
+        <button onclick="testCrearProducto()">Crear Producto</button>
+        <button onclick="testRegistrarVenta()">Registrar Venta</button>
+        <button onclick="testReabastecer()">Reabastecer Stock</button>
+        <div id="test-results"></div>
+    </div>
+
+    <div class="card">
+        <h2>3. Herramientas</h2>
+        <button onclick="resetDB()" class="danger">🔄 Reiniciar Base de Datos</button>
+        <button onclick="limpiarSesion()">🚪 Cerrar Sesión</button>
+        <button onclick="verLocalStorage()">👁️ Ver localStorage</button>
+        <div id="tools-output"></div>
+    </div>
+
+    <div class="card">
+        <h2>4. Enlaces Rápidos</h2>
+        <p>
+            <a href="index.html" target="_blank">🏠 Página de Inicio</a> | 
+            <a href="login.html" target="_blank">🔐 Login</a> | 
+            <a href="panel.html" target="_blank">📊 Panel Admin</a> | 
+            <a href="cliente-publico.html" target="_blank">🛒 Tienda Pública</a>
+        </p>
+    </div>
+
+    <script src="db.js"></script>
+    <script>
+        function verificarDB() {
+            const output = document.getElementById('db-status');
+            const initialized = localStorage.getItem('papirosso_initialized');
+            
+            if (initialized) {
+                const productos = db.getProductos();
+                const personas = db.getAll('personas');
+                const trabajadores = db.getAll('trabajadores');
+                const clientes = db.getAll('clientes');
+                const ventas = db.getAll('ventas');
+                
+                output.innerHTML = `
+                    <div class="test-result pass">✅ Base de datos inicializada</div>
+                    <div class="info">
+                        <p><strong>Estadísticas:</strong></p>
+                        <ul>
+                            <li>Productos: ${productos.length}</li>
+                            <li>Personas: ${personas.length}</li>
+                            <li>Trabajadores: ${trabajadores.length}</li>
+                            <li>Clientes: ${clientes.length}</li>
+                            <li>Ventas: ${ventas.length}</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                output.innerHTML = '<div class="test-result fail">❌ Base de datos no inicializada</div>';
+            }
+        }
+
+        function mostrarProductos() {
+            const output = document.getElementById('db-status');
+            const productos = db.getProductos();
+            output.innerHTML = '<h3>Productos en la base de datos:</h3><pre>' + 
+                JSON.stringify(productos, null, 2) + '</pre>';
+        }
+
+        function mostrarUsuarios() {
+            const output = document.getElementById('db-status');
+            const trabajadores = db.getAll('trabajadores');
+            const clientes = db.getClientes();
+            output.innerHTML = '<h3>Trabajadores:</h3><pre>' + 
+                JSON.stringify(trabajadores, null, 2) + '</pre>' +
+                '<h3>Clientes:</h3><pre>' + 
+                JSON.stringify(clientes, null, 2) + '</pre>';
+        }
+
+        function mostrarVentas() {
+            const output = document.getElementById('db-status');
+            const ventas = db.getAllVentas();
+            if (ventas.length === 0) {
+                output.innerHTML = '<div class="info">No hay ventas registradas</div>';
+            } else {
+                output.innerHTML = '<h3>Ventas registradas:</h3><pre>' + 
+                    JSON.stringify(ventas, null, 2) + '</pre>';
+            }
+        }
+
+        function testLogin() {
+            const output = document.getElementById('test-results');
+            
+            // Probar login exitoso
+            const resultado1 = db.login('ROMJ050515HDFRS09', 'admin123');
+            const test1 = resultado1.success ? 
+                '<div class="test-result pass">✅ Login Admin exitoso</div>' :
+                '<div class="test-result fail">❌ Login Admin falló</div>';
+            
+            // Probar login fallido
+            const resultado2 = db.login('CURPINVALIDA', 'wrong');
+            const test2 = !resultado2.success ? 
+                '<div class="test-result pass">✅ Login inválido rechazado correctamente</div>' :
+                '<div class="test-result fail">❌ Login inválido debería fallar</div>';
+            
+            output.innerHTML = test1 + test2;
+        }
+
+        function testCrearProducto() {
+            const output = document.getElementById('test-results');
+            
+            try {
+                const nuevoProducto = {
+                    id_producto: 'TEST-' + Date.now(),
+                    nombre: 'Producto de Prueba',
+                    precio: 99.99,
+                    cant_exist: 10,
+                    descripcion: 'Producto creado durante test'
+                };
+                
+                db.crearProducto(nuevoProducto);
+                const productos = db.getProductos();
+                const existe = productos.find(p => p.id_producto === nuevoProducto.id_producto);
+                
+                if (existe) {
+                    output.innerHTML = '<div class="test-result pass">✅ Producto creado exitosamente</div>' +
+                        '<pre>' + JSON.stringify(existe, null, 2) + '</pre>';
+                } else {
+                    output.innerHTML = '<div class="test-result fail">❌ Producto no se guardó</div>';
+                }
+            } catch (e) {
+                output.innerHTML = '<div class="test-result fail">❌ Error: ' + e.message + '</div>';
+            }
+        }
+
+        function testRegistrarVenta() {
+            const output = document.getElementById('test-results');
+            
+            try {
+                const productos = db.getProductos();
+                if (productos.length === 0) {
+                    output.innerHTML = '<div class="test-result fail">❌ No hay productos para vender</div>';
+                    return;
+                }
+                
+                const producto = productos[0];
+                
+                const ventaData = {
+                    precio_total: producto.precio * 2,
+                    curp_cliente: null,
+                    curp_trabajador: 'ROMJ050515HDFRS09',
+                    detalles: [{
+                        id_producto: producto.id_producto,
+                        nombre: producto.nombre,
+                        precio: producto.precio,
+                        cantidad: 2
+                    }]
+                };
+                
+                const resultado = db.registrarVenta(ventaData);
+                
+                if (resultado.id_venta) {
+                    output.innerHTML = '<div class="test-result pass">✅ Venta registrada: ' + 
+                        resultado.id_venta + '</div>';
+                } else {
+                    output.innerHTML = '<div class="test-result fail">❌ Venta no se registró</div>';
+                }
+            } catch (e) {
+                output.innerHTML = '<div class="test-result fail">❌ Error: ' + e.message + '</div>';
+            }
+        }
+
+        function testReabastecer() {
+            const output = document.getElementById('test-results');
+            
+            try {
+                const productos = db.getProductos();
+                if (productos.length === 0) {
+                    output.innerHTML = '<div class="test-result fail">❌ No hay productos</div>';
+                    return;
+                }
+                
+                const producto = productos[0];
+                const stockAntes = producto.cant_exist;
+                
+                db.actualizarStock(producto.id_producto, 50);
+                
+                const productoActualizado = db.findBy('productos', 'id_producto', producto.id_producto);
+                
+                if (productoActualizado.cant_exist === stockAntes + 50) {
+                    output.innerHTML = '<div class="test-result pass">✅ Stock actualizado: ' + 
+                        stockAntes + ' → ' + productoActualizado.cant_exist + '</div>';
+                } else {
+                    output.innerHTML = '<div class="test-result fail">❌ Stock no se actualizó correctamente</div>';
+                }
+            } catch (e) {
+                output.innerHTML = '<div class="test-result fail">❌ Error: ' + e.message + '</div>';
+            }
+        }
+
+        function resetDB() {
+            if (confirm('¿Estás seguro? Esto borrará TODOS los datos y los reiniciará a los valores por defecto.')) {
+                db.reset();
+                document.getElementById('tools-output').innerHTML = 
+                    '<div class="test-result pass">✅ Base de datos reiniciada. Recarga la página para ver los cambios.</div>';
+                setTimeout(() => location.reload(), 1500);
+            }
+        }
+
+        function limpiarSesion() {
+            localStorage.removeItem('usuario');
+            document.getElementById('tools-output').innerHTML = 
+                '<div class="test-result pass">✅ Sesión cerrada</div>';
+        }
+
+        function verLocalStorage() {
+            const output = document.getElementById('tools-output');
+            const keys = Object.keys(localStorage).filter(k => k.startsWith('papirosso_'));
+            
+            if (keys.length === 0) {
+                output.innerHTML = '<div class="info">No hay datos de Papirosso en localStorage</div>';
+            } else {
+                let html = '<h3>Claves en localStorage:</h3><ul>';
+                keys.forEach(key => {
+                    const size = localStorage.getItem(key).length;
+                    html += `<li><strong>${key}</strong> (${size} bytes)</li>`;
+                });
+                html += '</ul>';
+                output.innerHTML = html;
+            }
+        }
+
+        // Verificar al cargar
+        window.addEventListener('load', () => {
+            verificarDB();
+        });
+    </script>
+</body>
+</html>
