@@ -979,7 +979,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.remove('hidden'); // Quita la clase y activa la capa fija
+                modalSans.classList.remove('hidden'); // Remueve el hidden y el CSS lo posiciona fixed al centro
             }
             musicaSans.play().catch(error => console.log("Audio bloqueado:", error));
         });
@@ -989,14 +989,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCerrarSans) {
         btnCerrarSans.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.add('hidden'); // Lo oculta de manera segura
+                modalSans.classList.add('hidden'); // Lo vuelve a ocultar por completo
             }
             musicaSans.pause();
             musicaSans.currentTime = 0;
         });
     }
 });
-
 
 
 
