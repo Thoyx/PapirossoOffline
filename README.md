@@ -67,11 +67,11 @@ El archivo `supabase-schema.sql` contiene el script para:
 ## 🌐 Despliegue
 
 La aplicación está disponible para su ejecución en el siguiente enlace:
-👉 [https://jorvsk2007.github.io]([https://jorvsk2007.github.io](https://thoyx.github.io/PapirossoOffline/))
+👉 [https://thoyx.github.io/PapirossoOffline/](https://thoyx.github.io/PapirossoOffline/)
 
 
 
 ## Repositorio general de proyectos
-👉 [https://jorvsk2007.github.io](https://github.com/gabrielhuav/DB-Coursework-2026-2)
+👉 [https://github.com/gabrielhuav/DB-Coursework-2026-2](https://github.com/gabrielhuav/DB-Coursework-2026-2)
 
 ---
