@@ -458,78 +458,37 @@ button { font: inherit; }
 }
 
 /* ==========================================
-   ESTILOS PARA MODALES EMERGENTES (SANS / LOGIN)
+   MODAL DE SANS (VENTANA EMERGENTE FIJA)
    ========================================== */
 
-/* Fondo oscuro que cubre toda la pantalla */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.6); /* Fondo oscuro semitransparente */
-    backdrop-filter: blur(4px); /* Efecto difuminado moderno */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Por encima de todo */
-}
-
-/* Tarjeta blanca flotante del mensaje */
-.modal-card {
-    background: var(--surface);
-    border-radius: 24px;
-    padding: 32px;
-    width: 100%;
-    max-width: 460px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    border: 1px solid var(--border);
-}
-
-.modal-header h2 {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 1.5rem;
-    font-weight: 800;
-}
-
-.modal-body {
-    font-size: 1.05rem;
-    color: var(--text-main);
-    line-height: 1.6;
-    margin-bottom: 24px;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* Forzar que .hidden oculte por completo */
-.hidden {
-    display: none !important;
-}
-
-/* ==========================================
-   MODAL DE SANS (CAPA FLOTANTE INDEPENDIENTE)
-   ========================================== */
-
+/* Fondo oscuro flotante que no empuja ningún elemento */
 .modal-overlay {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(15, 23, 42, 0.6) !important; /* Fondo oscuro transparente */
+    background: rgba(15, 23, 42, 0.6) !important; /* Capa oscura translúcida */
     backdrop-filter: blur(4px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    z-index: 99999 !important; /* Por encima de cualquier elemento */
+    z-index: 99999 !important; /* Por encima de absolutamente todo */
 }
 
-/* Ocultación estricta cuando tiene la clase .hidden */
+/* La tarjeta blanca con el diálogo de Sans */
+.modal-card.easter-card {
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    padding: 32px !important;
+    width: 100% !important;
+    max-width: 450px !important; /* Tamaño perfecto de cuadro de diálogo */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    border: 1px dashed #d1d5db !important;
+    display: block !important;
+}
+
+/* Ocultación estricta usando tu clase .hidden */
 .modal-overlay.hidden {
     display: none !important;
 }
