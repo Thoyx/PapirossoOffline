@@ -55,10 +55,6 @@ Transformé tu proyecto de una aplicación con backend (Node.js + Supabase) a un
 
 ## 🔐 Credenciales de prueba
 
-### Administradores (acceso completo)
-- **CURP**: `ROMJ050515HDFRS091` | **Contraseña**: `admin123`
-- **CURP**: `ROJA980315HDFRS081` | **Contraseña**: `admin123`
-
 ### Visitante (solo lectura)
 - **CURP**: `CHOC000101HDFRRR00` | **Contraseña**: `profesor123`
 - **CURP**: `CHOC000101HDFRRR99` | **Contraseña**: `demo123`
