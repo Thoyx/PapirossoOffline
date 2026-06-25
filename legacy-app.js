@@ -981,29 +981,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Al hacer clic en el huesito, cambiamos el display a 'flex' (o 'block')
+    // Al hacer clic en el huesito 🦴, se muestra la ventana emergente centrada estilo Login
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.remove('hidden');
-                modalSans.style.display = 'flex'; // <-- Forzar que se vea
+                modalSans.classList.remove('hidden'); // Remueve la ocultación de golpe
             }
-            musicaSans.play().catch(error => console.log(error));
+            musicaSans.play().catch(error => console.log("El navegador bloqueó el audio:", error));
         });
     }
 
-    // Al cerrar, lo volvemos a ocultar con 'none'
+    // Funcionalidad para el botón "Cerrar" del propio modal de Sans
     if (btnCerrarSans) {
         btnCerrarSans.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.add('hidden');
-                modalSans.style.display = 'none'; // <-- Forzar que se oculte
+                modalSans.classList.add('hidden'); // Lo vuelve a ocultar de forma segura
             }
             musicaSans.pause();
             musicaSans.currentTime = 0;
         });
     }
 });
+
+
 
 // =======================================================
 // 6. LÓGICA DE PUNTO DE VENTA Y CARRITO (VERSION RESTAURADA)
