@@ -951,58 +951,56 @@ async function registrarVentaPublica() {
 // 10. EASTER EGG - SANS (MORTADELA)
 // ==========================================
 
-// 1. Declaramos el archivo de audio usando el path relativo de tu carpeta
 const musicaSans = new Audio('musicaeaster/toby fox - UNDERTALE Soundtrack - 72 Song That Might Play When You Fight Sans.mp3');
 musicaSans.loop = true;
 
-// 2. Escuchamos cuando el HTML termine de cargar los elementos de la página
 document.addEventListener('DOMContentLoaded', () => {
     const buscadorPublico = document.getElementById('public-search');
     const easterEggBtn = document.getElementById('easter-egg-trigger');
     const modalSans = document.getElementById('easter-egg-modal');
     const btnCerrarSans = document.getElementById('close-easter-egg');
 
-    // Control en tiempo real de lo que se escribe en el buscador
     if (buscadorPublico) {
         buscadorPublico.addEventListener('input', (e) => {
             const texto = e.target.value.toLowerCase().trim();
             
-            // Si dice "mortadela", SOLO hacemos visible el botón del huesito 🦴
             if (texto === 'mortadela') {
                 if (easterEggBtn) easterEggBtn.classList.remove('hidden');
             } else {
-                // Si borra la palabra, ocultamos el hueso, el modal y apagamos la música
                 if (easterEggBtn) easterEggBtn.classList.add('hidden');
-                if (modalSans) modalSans.classList.add('hidden');
-                
+                if (modalSans) {
+                    modalSans.style.display = 'none';
+                    modalSans.classList.add('hidden');
+                }
                 musicaSans.pause();
                 musicaSans.currentTime = 0;
             }
         });
     }
 
-    // Al hacer clic en el huesito 🦴, se muestra la ventana emergente centrada estilo Login
+    // AL DAR CLIC EN EL HUESO 🦴
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.remove('hidden'); // Remueve la ocultación de golpe
+                modalSans.classList.remove('hidden');
+                modalSans.style.display = 'flex'; // <--- Lo obligamos a mostrarse centrado
             }
-            musicaSans.play().catch(error => console.log("El navegador bloqueó el audio:", error));
+            musicaSans.play().catch(error => console.log("Audio bloqueado:", error));
         });
     }
 
-    // Funcionalidad para el botón "Cerrar" del propio modal de Sans
+    // AL CERRAR EL MODAL
     if (btnCerrarSans) {
         btnCerrarSans.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.add('hidden'); // Lo vuelve a ocultar de forma segura
+                modalSans.style.display = 'none'; // <--- Lo ocultamos por completo
+                modalSans.classList.add('hidden');
             }
             musicaSans.pause();
             musicaSans.currentTime = 0;
         });
     }
 });
-
 
 
 // =======================================================
