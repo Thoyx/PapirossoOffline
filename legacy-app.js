@@ -981,25 +981,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // La ventanita y la música SOLO se activan al hacer clic en el botón de hueso 🦴
+    // Al hacer clic en el huesito, cambiamos el display a 'flex' (o 'block')
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
-            if (modalSans) modalSans.classList.remove('hidden');
-            
-            // Reproducimos la música tras la interacción del clic
-            musicaSans.play().catch(error => {
-                console.log("El navegador bloqueó el audio:", error);
-            });
+            if (modalSans) {
+                modalSans.classList.remove('hidden');
+                modalSans.style.display = 'flex'; // <-- Forzar que se vea
+            }
+            musicaSans.play().catch(error => console.log(error));
         });
     }
 
-    // Funcionalidad para el botón "Cerrar" del propio modal de Sans
+    // Al cerrar, lo volvemos a ocultar con 'none'
     if (btnCerrarSans) {
         btnCerrarSans.addEventListener('click', () => {
-            // Ocultamos el modal visualmente
-            if (modalSans) modalSans.classList.add('hidden');
-            
-            // Apagamos y reiniciamos la música al dar clic en cerrar
+            if (modalSans) {
+                modalSans.classList.add('hidden');
+                modalSans.style.display = 'none'; // <-- Forzar que se oculte
+            }
             musicaSans.pause();
             musicaSans.currentTime = 0;
         });
