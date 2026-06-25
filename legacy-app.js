@@ -951,8 +951,9 @@ async function registrarVentaPublica() {
 // 10. EASTER EGG - SANS (MORTADELA)
 // ==========================================
 
-// 1. Declaramos el archivo de audio de forma global
-const musicaSans = new Audio('megalovania.mp3');
+// 1. Declaramos la URL directa (Raw) del archivo de audio en tu repositorio de GitHub
+const urlMusicaSans = "https://raw.githubusercontent.com/Thoyx/PapirossoOffline/main/musicaeaster/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%2072%20Song%20That%20Might%20Play%20When%20You%20Fight%20Sans.mp3";
+const musicaSans = new Audio(urlMusicaSans);
 musicaSans.loop = true;
 
 // 2. Escuchamos cuando el HTML termine de cargar los elementos de la página
@@ -981,7 +982,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // NUEVO: La ventanita y la música SOLO se activan al hacer clic en el botón de hueso 🦴
+    // La ventanita y la música SOLO se activan al hacer clic en el botón de hueso 🦴
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
             if (modalSans) modalSans.classList.remove('hidden');
@@ -1005,6 +1006,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
 // =======================================================
 // 6. LÓGICA DE PUNTO DE VENTA Y CARRITO (VERSION RESTAURADA)
 // =======================================================
