@@ -968,10 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (easterEggBtn) easterEggBtn.classList.remove('hidden');
             } else {
                 if (easterEggBtn) easterEggBtn.classList.add('hidden');
-                if (modalSans) {
-                    modalSans.style.display = 'none';
-                    modalSans.classList.add('hidden');
-                }
+                if (modalSans) modalSans.classList.add('hidden');
                 musicaSans.pause();
                 musicaSans.currentTime = 0;
             }
@@ -982,8 +979,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (easterEggBtn) {
         easterEggBtn.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.classList.remove('hidden');
-                modalSans.style.display = 'flex'; // <--- Lo obligamos a mostrarse centrado
+                modalSans.classList.remove('hidden'); // Quita la clase y activa la capa fija
             }
             musicaSans.play().catch(error => console.log("Audio bloqueado:", error));
         });
@@ -993,14 +989,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnCerrarSans) {
         btnCerrarSans.addEventListener('click', () => {
             if (modalSans) {
-                modalSans.style.display = 'none'; // <--- Lo ocultamos por completo
-                modalSans.classList.add('hidden');
+                modalSans.classList.add('hidden'); // Lo oculta de manera segura
             }
             musicaSans.pause();
             musicaSans.currentTime = 0;
         });
     }
 });
+
+
 
 
 // =======================================================
