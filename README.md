@@ -34,8 +34,8 @@ Los datos son **locales a cada navegador/dispositivo**. Esto significa:
 ### 👔 Administradores (acceso completo)
 | CURP | Contraseña |
 |------|------------|
-| `ROMJ050515HDFRS09` | `admin123` |
-| `ROJA980315HDFRS08` | `admin123` |
+| `ROMJ050515HDFRS091` | `admin123` |
+| `ROJA980315HDFRS081` | `admin123` |
 
 ### 👁️ Visitante (solo lectura)
 | CURP | Contraseña |

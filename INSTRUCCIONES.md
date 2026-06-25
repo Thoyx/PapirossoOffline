@@ -29,7 +29,7 @@ Transformé tu proyecto de una aplicación con backend (Node.js + Supabase) a un
 2. **Abre `index.html` en tu navegador**
    - Doble clic en el archivo `index.html`
    - Navega por todas las páginas
-   - Inicia sesión con: `ROMJ050515HDFRS09` / `admin123`
+   - Inicia sesión con: `ROMJ050515HDFRS091` / `admin123`
 
 ### Opción 2: Subir a GitHub Pages
 
@@ -56,8 +56,8 @@ Transformé tu proyecto de una aplicación con backend (Node.js + Supabase) a un
 ## 🔐 Credenciales de prueba
 
 ### Administradores (acceso completo)
-- **CURP**: `ROMJ050515HDFRS09` | **Contraseña**: `admin123`
-- **CURP**: `ROJA980315HDFRS08` | **Contraseña**: `admin123`
+- **CURP**: `ROMJ050515HDFRS091` | **Contraseña**: `admin123`
+- **CURP**: `ROJA980315HDFRS081` | **Contraseña**: `admin123`
 
 ### Visitante (solo lectura)
 - **CURP**: `CHOC000101HDFRRR00` | **Contraseña**: `profesor123`

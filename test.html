@@ -157,7 +157,7 @@
             const output = document.getElementById('test-results');
             
             // Probar login exitoso
-            const resultado1 = db.login('ROMJ050515HDFRS09', 'admin123');
+            const resultado1 = db.login('ROMJ050515HDFRS091', 'admin123');
             const test1 = resultado1.success ? 
                 '<div class="test-result pass">✅ Login Admin exitoso</div>' :
                 '<div class="test-result fail">❌ Login Admin falló</div>';
@@ -213,7 +213,7 @@
                 const ventaData = {
                     precio_total: producto.precio * 2,
                     curp_cliente: null,
-                    curp_trabajador: 'ROMJ050515HDFRS09',
+                    curp_trabajador: 'ROMJ050515HDFRS091',
                     detalles: [{
                         id_producto: producto.id_producto,
                         nombre: producto.nombre,
