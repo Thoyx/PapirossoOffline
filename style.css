@@ -456,3 +456,8 @@ button { font: inherit; }
         max-width: 100%;
     }
 }
+
+
+.hidden {
+    display: none !important;
+}
